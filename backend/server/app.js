@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const setCookieId = require('./middleware/setCookieId');
+const db = require('../database')
+const pets = require('../database/controllers/pets');
 const app = express();
 
 
@@ -15,9 +17,6 @@ if (process.env.ENVIRONMENT === "development") {
   app.use(morgan('dev'));
 }
 
-
-app.get('/', (req, res, next) => {
-  res.send('pawder')
-})
+app.get('/pets', pets.getPets)
 
 module.exports = app

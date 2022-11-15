@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PetSchema = new mongoose.Schema({
+const petSchema = new mongoose.Schema({
   petId: Number,
   name: String,
   photo: String,
