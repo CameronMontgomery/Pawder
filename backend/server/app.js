@@ -1,6 +1,7 @@
 require("dotenv").config();
 const morgan = require('morgan');
 const express = require('express');
+const path = require('path')
 const cookieParser = require('cookie-parser');
 const setCookieId = require('./middleware/setCookieId');
 const db = require('../database')
@@ -16,6 +17,8 @@ app.use(setCookieId)
 if (process.env.ENVIRONMENT === "development") {
   app.use(morgan('dev'));
 }
+
+app.use(express.static(path.join(__dirname, '../../frontend/public/dist')));
 
 app.get('/pets', pets.getPets)
 

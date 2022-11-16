@@ -20,6 +20,7 @@ const getPets = async (req, res) => {
     }
 
     if (session.tokenExpires < Date.now()) {
+      console.log('test', session)
       api.getToken()
         .then(async (tokenResponse) => {
           token = tokenResponse.data.access_token
@@ -27,7 +28,7 @@ const getPets = async (req, res) => {
         })
         .catch((err) => console.log('Error updating session', err))
     }
-    console.log(session.token)
+
     api.getPets(session.token, type, location)
       .then((apiResponse) => {
         res.send(apiResponse.data.animals)
