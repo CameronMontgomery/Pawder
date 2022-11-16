@@ -11,6 +11,7 @@ const getPets = async (req, res) => {
   try {
     let session = await Session.findOne({sessionId: id})
     if (!session) {
+      console.log('NO SESSION')
       api.getToken()
       .then(async (tokenResponse) => {
         token = tokenResponse.data.access_token
@@ -37,7 +38,7 @@ const getPets = async (req, res) => {
 
 
   } catch(err) {
-    console.log('Error: Could not create a session', err.message)
+    console.log('Error: Could not create a session', err)
   }
 }
 
