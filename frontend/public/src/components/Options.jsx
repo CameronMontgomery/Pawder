@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
-const Options = ({closeOptions, search}) => {
+const Options = ({closeOptions, search, resetOffset}) => {
   const [location, setLocation] = useState('');
+  const [lastLocation, setLastLocation] = useState('')
   const [type, setType] = useState('')
 
   return (
@@ -14,8 +15,16 @@ const Options = ({closeOptions, search}) => {
       </select>
       <button>Favorites</button>
       <button onClick={(e) => {
-        closeOptions()
-        search()
+        if (!lastLocation) {
+          closeOptions()
+          search()
+        } else if (lastLocation !== location) {
+          resetOffset()
+          closeOptions()
+          search()
+        } else {
+          closeOptions()
+        }
       }}>Rescue Your Next Best Friend</button>
     </div>
   )

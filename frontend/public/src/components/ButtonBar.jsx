@@ -1,12 +1,15 @@
 import React from 'react';
 
 
-const ButtonBar = () => {
+const ButtonBar = ({nextPet, showOptions}) => {
   return (
     <div className="button-bar">
-      <button>Skip</button>
-      <button>Heart</button>
-      <button>Options</button>
+      <button onClick={() => nextPet()}>Skip</button>
+      <button onClick={() => {
+        // addToFavorites()
+        nextPet()
+      }}>Heart</button>
+      <button onClick={() => showOptions()}>Options</button>
     </div>
   )
 }

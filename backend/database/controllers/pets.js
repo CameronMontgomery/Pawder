@@ -21,7 +21,6 @@ const getPets = async (req, res) => {
     }
 
     if (session.tokenExpires < Date.now()) {
-      console.log('test', session)
       api.getToken()
         .then(async (tokenResponse) => {
           token = tokenResponse.data.access_token
@@ -34,7 +33,7 @@ const getPets = async (req, res) => {
       .then((apiResponse) => {
         res.send(apiResponse.data.animals)
       })
-      .catch(err => console.log('Error getting pets from api', err.message))
+      .catch(err => console.log('Error getting pets from api', err))
 
 
   } catch(err) {
