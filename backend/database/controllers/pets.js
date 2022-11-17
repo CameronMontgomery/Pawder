@@ -11,6 +11,7 @@ const getPets = async (req, res) => {
   try {
     let session = await Session.findOne({sessionId: id})
     if (!session) {
+      console.log('NO SESSION')
       api.getToken()
       .then(async (tokenResponse) => {
         token = tokenResponse.data.access_token
@@ -27,16 +28,16 @@ const getPets = async (req, res) => {
         })
         .catch((err) => console.log('Error updating session', err))
     }
-    console.log(session.token)
+
     api.getPets(session.token, type, location)
       .then((apiResponse) => {
         res.send(apiResponse.data.animals)
       })
-      .catch(err => console.log('Error getting pets from api', err.message))
+      .catch(err => console.log('Error getting pets from api', err))
 
 
   } catch(err) {
-    console.log('Error: Could not create a session', err.message)
+    console.log('Error: Could not create a session', err)
   }
 }
 
