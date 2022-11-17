@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import FavoritesList from './FavoritesList.jsx';
 
-const Options = ({closeOptions, search, resetOffset, favorites}) => {
+const Options = ({closeOptions, search, changeSearch, favorites}) => {
   const [location, setLocation] = useState('');
   const [lastLocation, setLastLocation] = useState('')
   const [type, setType] = useState('')
@@ -29,7 +29,7 @@ const Options = ({closeOptions, search, resetOffset, favorites}) => {
           setLastType(type)
           search(location, type)
         } else if (lastLocation !== location || lastType !== type) {
-          resetOffset()
+          changeSearch(location, type)
           closeOptions()
           search(location, type)
           setLastType(type)

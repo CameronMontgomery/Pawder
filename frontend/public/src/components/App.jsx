@@ -15,13 +15,10 @@ const App = () => {
     setFavorites(current)
   }
 
-  useEffect(() => {
-    console.log(searchOffset)
-  }, [searchOffset])
-
-  const resetOffset = () => {
-    setCurrentPets([])
+  const changeSearch = (location, type) => {
+    setCurrentPets(null)
     setSearchOffset(1)
+    search(location, type)
   }
 
   const showOptions = () => {
@@ -58,7 +55,11 @@ const App = () => {
         })
 
         console.log('new pets with photos', parsedPets)
-        if (currentPets.length === 0) {
+        if (!currentPets) {{
+          setCurrentPets([])
+          search(location, type)
+        }}
+        else if (currentPets.length === 0) {
           setSearchOffset(searchOffset + 1)
           setCurrentPets(parsedPets)
         } else {
@@ -77,7 +78,7 @@ const App = () => {
           <h1 className="title">pawder</h1>
         </div>
         <div className="main">
-          {isOption ? <Options closeOptions={showOptions} favorites={favorites} search={search} resetOffset={resetOffset}/> : <Display pets={currentPets} search={search} addToFavorites={addToFavorites} showOptions={showOptions}/>}
+          {isOption ? <Options closeOptions={showOptions} favorites={favorites} search={search} changeSearch={changeSearch}/> : <Display pets={currentPets} search={search} addToFavorites={addToFavorites} showOptions={showOptions}/>}
         </div>
       </div>
     </div>
