@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
+import FavoritesList from './FavoritesList.jsx';
 
-const Options = ({closeOptions, search, resetOffset}) => {
+const Options = ({closeOptions, search, resetOffset, favorites}) => {
   const [location, setLocation] = useState('');
   const [lastLocation, setLastLocation] = useState('')
   const [type, setType] = useState('')
+  const [lastType, setLastType] = useState('')
+  const [isFavorites, setIsFavorites] = useState(false);
 
   return (
     <div className="options">
@@ -13,15 +16,24 @@ const Options = ({closeOptions, search, resetOffset}) => {
         <option value="dog">Dog</option>
         <option value="cat">Cat</option>
       </select>
-      <button>Favorites</button>
+      <>
+        {isFavorites ? <FavoritesList favorites={favorites}/> : null}
+      </>
       <button onClick={(e) => {
-        if (!lastLocation) {
+        setIsFavorites(!isFavorites)
+      }}>Favorites</button>
+      <button onClick={(e) => {
+        if (!lastLocation && !lastType) {
           closeOptions()
-          search()
-        } else if (lastLocation !== location) {
+          setLastLocation(location)
+          setLastType(type)
+          search(location, type)
+        } else if (lastLocation !== location || lastType !== type) {
           resetOffset()
           closeOptions()
-          search()
+          search(location, type)
+          setLastType(type)
+          setLastLocation(location)
         } else {
           closeOptions()
         }

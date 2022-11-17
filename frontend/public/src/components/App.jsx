@@ -7,6 +7,13 @@ const App = () => {
   const [isOption, setIsOption] = useState(true)
   const [currentPets, setCurrentPets] = useState([])
   const [searchOffset, setSearchOffset] = useState(1)
+  const [favorites, setFavorites] = useState([])
+
+  const addToFavorites = (pet) => {
+    let current = favorites
+    current.push(pet)
+    setFavorites(current)
+  }
 
   useEffect(() => {
     console.log(searchOffset)
@@ -22,6 +29,8 @@ const App = () => {
   }
 
   const search = (location, type) => {
+    location = location || '94105'
+    type = type || 'dog'
     axios.get(`pets`, {
       params: {
         type,
@@ -38,7 +47,9 @@ const App = () => {
             petId: pet.id,
             name: pet.name,
             petFinderUrl: pet.url,
-            photo: pet.photos[0].medium
+            photo: pet.photos[0].medium,
+            status: pet.status,
+            spayedNeutered: pet.attributes.spayed_neutered
           }
         })
 
@@ -61,10 +72,12 @@ const App = () => {
   return (
     <div className="app-container">
       <div className="app">
-        <img className="title-paw rotate" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg" />
-        <h1 className="title">pawder</h1>
+        <div className="header">
+          <img className="title-paw rotate" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Paw-print.svg" />
+          <h1 className="title">pawder</h1>
+        </div>
         <div className="main">
-          {isOption ? <Options closeOptions={showOptions} search={search} resetOffset={resetOffset}/> : <Display pets={currentPets} search={search} showOptions={showOptions}/>}
+          {isOption ? <Options closeOptions={showOptions} favorites={favorites} search={search} resetOffset={resetOffset}/> : <Display pets={currentPets} search={search} addToFavorites={addToFavorites} showOptions={showOptions}/>}
         </div>
       </div>
     </div>
