@@ -1,36 +1,27 @@
 # Pawder
-### Hack Reactor MVP
-
-![pawder-demo](https://github.com/Tribalash/Pawder/blob/master/assets/pawderDemo.gif)
-
-
-## Table of Contents
-
-1. [Description](#description)
-2. [Technical Overview](#technical-overview)
-3. [Usage](#usage)
-4. [Requirements](#requirements)
-5. [Development](#development)
-6. [Production](#production)
-7. [Testing](#testing)
 
 ## Description
 
-There are thousands of pets in shelters that need a loving home. The aim of Pawder is to quickly allow users to browse near by pets that are in need of adoption. These pets are saved to a favorites list where you can find out other information about the pet, which shelter it is at, and view the pet on an affiliates detailed page. 
+There are thousands of pets in shelters that need to find loving homes. The aim of Pawder is to provide a fun, minimalistic way to connect users with these animals. Remeniscent of dating apps, users "swipe" through pets favoriting the ones they would like to learn more about. Favorited pets are stored in a users list where they can access more information about the pet and find out ways to contact the shelter to start the adoption process.
 
-This currently represnts version 1.0, version 2.0 is in construction and will compleatly rework the app to include many more features than this proof of concept.
+This represents the initial MVP project done done while enrolled in Hack Reactor. Students are assigned to pick a topic, design, and build a full-stack application over the course of a two day period. Unfortunatly, issues I experienced working with the Petfinder API forced me to cut features that would have made this app much more enjoyable to develop and use in order to make the short deadline. I would like to return to the project in the future to add in those features, possibly using Firebase and developing a native app with React Native.
+
+<p float="left">
+  <img src="https://github.com/CameronMontgomery/Pawder/blob/master/assets/pawderDemo1.gif" width="450" />
+  <img src="https://github.com/CameronMontgomery/Pawder/blob/master/assets/pawderDemo2.gif" width="450" /> 
+</p>
 
 ## Technical Overview
 
-Full-stack app using React, Express, MongoDB and Node.js. Version two will be built leveraging Google's Firebase product to help supplement the backend.
-
-## Usage
-
-In order to run the project locally please read [Requirements](#requirements) section for instructions setting up a local .env and for installing dependencies. 
+Full-stack app using React, Express, MongoDB and Node.js
 
 ## Requirements
 
 Node.js - version 16.0+
+
+## Usage
+
+In order to run the project locally, configure and follow the steps below to install dependencies, configure environment variables, and launch app.
 
 ### Configuring .env
 
@@ -46,7 +37,3 @@ Setting up the development environment:
 > 1. Ensure dependencies are installed.
 > 2. Navigate to backend, to run both server-dev and build-dev with watch flags, run ```npm run start-dev```
 > 3. Navigate to localhost port 8000, http://localhost:8000
-
-## Production
-
-Creating production build:
